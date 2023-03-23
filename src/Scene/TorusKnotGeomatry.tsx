@@ -1,31 +1,53 @@
-import React, { Suspense, useRef } from 'react'
-import { Canvas, useThree } from '@react-three/fiber'
-import { BufferGeometry, Mesh, MeshBasicMaterial, TorusKnotGeometry } from 'three'
-import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
+import React, { Suspense, useMemo, useRef } from 'react'
+import { useFrame } from '@react-three/fiber'
+import { Mesh, TorusKnotGeometry } from 'three'
+import Camera from './Camera'
+import { Environment } from '@react-three/drei'
 
 const TorusKnotGeomatry = () => {
-  // const geometry = new TorusKnotGeometry(10, 3, 100, 16)
-  // const material = new MeshBasicMaterial({ color: 0xffff00 })
-  // const torusKnot = new Mesh(geometry, material)
-  const geomatryRef = useRef<any>()
+  const torusRef = useRef<Mesh>(null!)
+  const torusRef2 = useRef<Mesh>(null!)
+  const geomatryRef = useRef<TorusKnotGeometry>(null!)
+  const geomatryRef2 = useRef<TorusKnotGeometry>(null!)
+  useFrame(() => {
+    // torusRef.current.rotation.x += 0.01
+    // torusRef.current.rotation.y += 0.01
+    // torusRef2.current.rotation.x += 0.01
+    // torusRef2.current.rotation.y += 0.01
+    torusRef.current.rotation.z += 0.01
+    torusRef2.current.rotation.z += 0.01
+  })
+
+  const torusGeomatry = useMemo(() => geomatryRef.current, [])
+  const torusGeomatry2 = useMemo(() => geomatryRef2.current, [])
   return (
     <>
-      <OrbitControls target={[0, 0, 0]} />
-      <PerspectiveCamera position={[1, 1, 1]} />
-      <color args={[0, 0, 0]} attach="background" />
-      <Suspense fallback={null}>
-        <mesh scale={[1, 1, 1]}>
-          <torusKnotGeometry
-            ref={geomatryRef}
-            args={[9.7, 3.5, 139, 14, 20, 3]}
-          />
-          <meshStandardMaterial />
-          {/* <edgesGeometry attach="geometry" args={[geomatryRef.current]} />
-          <lineBasicMaterial attach="material" /> */}
+      <Camera position={[0, 0, 2]} />
+      {/* <color args={[0, 0, 0]} attach="background" /> */}
+      <ambientLight intensity={0.5} />
+      <pointLight intensity={0.2} position={[-30, 10, 950]} />
+      <pointLight intensity={0.2} position={[0, -10, 950]} />
+      <pointLight intensity={0.2} position={[-30, 0, 950]} />
+      <directionalLight position={[2, 0, 5]} shadow-mapSize={1024} castShadow />
+      <group position={[0, 0, 0]}>
+        <mesh scale={[0.1, 0.1, 0.1]} ref={torusRef} position={[2, 0, 0]}>
+          <torusKnotGeometry ref={geomatryRef} args={[10, 3, 64, 8, 9, 17]} />
+          <meshPhongMaterial color="#55efc4" />
+          <lineSegments>
+            <edgesGeometry attach="geometry" args={[torusGeomatry]} />
+            <lineBasicMaterial attach="material" color="#069869" />
+          </lineSegments>
         </mesh>
-      </Suspense>
-      <ambientLight intensity={0.1} />
-      <directionalLight color="red" position={[0, 0, 5]} />
+        <mesh scale={[0.1, 0.1, 0.1]} ref={torusRef2} position={[-2, 0, 0]} >
+          <torusKnotGeometry ref={geomatryRef2} args={[10, 3, 64, 8, 9, 17]} />
+          <meshPhongMaterial color="#55efc4" />
+          <lineSegments>
+            <edgesGeometry attach="geometry" args={[torusGeomatry2]} />
+            <lineBasicMaterial attach="material" color="#069869" />
+          </lineSegments>
+        </mesh>
+      </group>
+      <Environment preset="city" />
     </>
   )
 }
