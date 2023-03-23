@@ -6,7 +6,7 @@ import { Mesh } from 'three'
 
 const DragonModal = () => {
 
-  const gltf = useLoader(GLTFLoader, "../../public/gltf/scene.gltf")
+  const gltf = useLoader(GLTFLoader, "../gltf/scene.gltf")
 
   useEffect(() => {
     gltf.scene.scale.set(1, 1, 1)
