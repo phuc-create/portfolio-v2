@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import { SceneApp, TorusKnotGeomatry } from './Scene'
@@ -8,9 +8,11 @@ function App() {
 
   return (
     <div className='app-container'>
-      <SceneApp>
-        <TorusKnotGeomatry />
-      </SceneApp>
+      <Suspense>
+        <SceneApp>
+          <TorusKnotGeomatry />
+        </SceneApp>
+      </Suspense>
     </div>
   )
 }
