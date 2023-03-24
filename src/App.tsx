@@ -8,11 +8,9 @@ function App() {
 
   return (
     <div className='app-container'>
-      <Suspense>
-        <SceneApp>
-          <TorusKnotGeomatry />
-        </SceneApp>
-      </Suspense>
+      <SceneApp>
+        <TorusKnotGeomatry />
+      </SceneApp>
     </div>
   )
 }
