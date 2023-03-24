@@ -18,12 +18,8 @@ const TorusKnotGeomatry = () => {
   const colorMap = useLoader(TextureLoader, url)
 
   useFrame(() => {
-    // torusRef.current.rotation.x += 0.01
-    // torusRef.current.rotation.y += 0.01
-    // torusRef2.current.rotation.x += 0.01
-    // torusRef2.current.rotation.y += 0.01
-    torusRef.current.rotation.z += 0.1
-    torusRef2.current.rotation.z += 0.1
+    torusRef.current.rotation.z += 0.01
+    torusRef2.current.rotation.z -= 0.01
   })
 
   const torusGeomatry = useMemo(() => geomatryRef.current, [])
