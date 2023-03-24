@@ -5,6 +5,7 @@ import Camera from './Camera'
 import { Environment, useGLTF } from '@react-three/drei'
 import DragonModal from '../Modals/DragonModal'
 import { TextureLoader } from 'three/src/loaders/TextureLoader'
+import Ground from '../Modals/Ground'
 
 
 
@@ -37,7 +38,7 @@ const TorusKnotGeomatry = () => {
       <pointLight intensity={0.2} position={[0, -10, 950]} />
       <pointLight intensity={0.2} position={[-30, 0, 950]} />
       <directionalLight position={[2, 0, 5]} shadow-mapSize={1024} castShadow />
-      <group position={[0, 0, 0]}>
+      <group position={[0, 5.5, 0]}>
         <DragonModal />
         <mesh scale={[0.1, 0.1, 0.1]} ref={torusRef} position={[3.5, 0, 1]}>
           <torusKnotGeometry ref={geomatryRef} args={[10, 3, 64, 8, 9, 17]} />
@@ -59,6 +60,7 @@ const TorusKnotGeomatry = () => {
         </mesh>
       </group>
       <Environment preset="city" />
+      <Ground />
     </>
   )
 }
