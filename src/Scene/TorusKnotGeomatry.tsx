@@ -1,5 +1,5 @@
 import React, { Suspense, useMemo, useRef } from 'react'
-import { useFrame, useLoader } from '@react-three/fiber'
+import { useFrame, useLoader, } from '@react-three/fiber'
 import { Mesh, TorusKnotGeometry } from 'three'
 import Camera from './Camera'
 import { Environment, useGLTF } from '@react-three/drei'
@@ -22,8 +22,8 @@ const TorusKnotGeomatry = () => {
     // torusRef.current.rotation.y += 0.01
     // torusRef2.current.rotation.x += 0.01
     // torusRef2.current.rotation.y += 0.01
-    torusRef.current.rotation.z += 0.01
-    torusRef2.current.rotation.z += 0.01
+    torusRef.current.rotation.z += 0.1
+    torusRef2.current.rotation.z += 0.1
   })
 
   const torusGeomatry = useMemo(() => geomatryRef.current, [])
