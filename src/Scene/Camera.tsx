@@ -9,7 +9,7 @@ const Camera = ({ position, ...props }: CameraProps) => {
   return (
     <>
       <perspectiveCamera position={position} {...props} ref={cameraRef} />
-      <OrbitControls makeDefault target={[0, 0, 0]} camera={cameraRef.current} />
+      <OrbitControls minPolarAngle={0} maxPolarAngle={Math.PI / 2} makeDefault target={[0, 0, 0]} camera={cameraRef.current} />
     </>
   )
 }
