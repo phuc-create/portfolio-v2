@@ -8,7 +8,7 @@ interface SceneProps {
 const SceneApp = ({ children }: SceneProps) => {
   return (
     <div >
-      <Canvas camera={{ position: [40, 40, 40], fov: 35 }}>{children}</Canvas>
+      <Canvas camera={{ position: [-20, 10, 20], fov: 35 }}>{children}</Canvas>
     </div>
   )
 }

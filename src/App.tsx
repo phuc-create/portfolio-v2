@@ -1,6 +1,7 @@
 import React, { Suspense, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
+import Ocean from './Modals/Ocean'
 import { SceneApp, TorusKnotGeomatry } from './Scene'
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
     <div className='app-container'>
       <SceneApp>
         <TorusKnotGeomatry />
+        <Ocean />
       </SceneApp>
     </div>
   )
